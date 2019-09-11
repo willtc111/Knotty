@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 public class KnotGen {
 
 	private static int[][][] blocks = {
-		{//0
+		{		//0
 			{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0},{0,0,0,0,0}
 		}, {	//1
 			{0,0,0,0,0},{0,0,0,0,0},{1,1,1,1,1},{0,0,0,0,0},{0,0,0,0,0}
@@ -46,7 +46,7 @@ public class KnotGen {
 		}
 	};
 	private static int[][][] blocks2 = {
-			{//0
+			{		//0
 				{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0},{0,0,0,0,0,0,0}
 			}, {	//1
 				{0,0,0,0,0,0,0},
@@ -173,10 +173,20 @@ public class KnotGen {
 
 	
 	public static void main(String[] args) {
-		//10,2,11111111L is cool
-		int size = 15;
-		int mult = 2;
+		int size = 10;
+		int mult = 1;
 		long seed = 11111111L;
+		
+		if(args.length == 0) {
+			System.out.println("Using hardcoded values.");
+		} else if(args.length == 3) {
+			System.out.println("Using arguemnts for input.");
+			size = Integer.valueOf(args[0]);
+			mult = Integer.valueOf(args[1]);
+			seed = Long.valueOf(args[2]);
+		} else {
+			System.out.println("Usage: Knotty [size spacing seed]");
+		}
 		
 		BufferedImage img = knotGen( size, mult, seed, true );
 		
@@ -234,8 +244,8 @@ public class KnotGen {
 			String filename = "Knot";
 			filename = filename + seed + "_s" + size + "_m" + mult;
 			filename = filename + ".jpg";
-			System.out.println( "Saving Image as \"" + filename + "\"" );  //DEBUG
-			File saveMe = new File( "C:\\Users\\William\\Pictures\\" + filename );
+			System.out.println( "Saving Image as \"" + System.getProperty("user.dir") + "\\samples\\" + filename + "\"" );  //DEBUG
+			File saveMe = new File( System.getProperty("user.dir") + "\\samples\\"+ filename );
 			try {
 				ImageIO.write( img, "jpg", saveMe );
 			} catch (IOException e) {

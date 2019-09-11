@@ -4,7 +4,6 @@ public class LFSR {
 	int[] regs = new int[8];
 	long seed;
 	int length;
-	//00101101
 	
 	public LFSR( long s ) throws Exception {
 		//check if it is of length 8
@@ -119,6 +118,5 @@ public class LFSR {
 			System.out.println( "P("+i+"): " + diff );
 		}
 	}
-	
 	
 }
